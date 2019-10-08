@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.Pipes;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,9 +8,13 @@ using log4net.Core;
 
 namespace LiveLogLibrary
 {
-    // BufferingAppenderSkeleton cache some log without display
+    /// <summary>
+    /// Pipe Addpender for log item transfer
+    /// </summary>
     public class PipeAppender : AppenderSkeleton // BufferingAppenderSkeleton
     {
+        // BufferingAppenderSkeleton cache some log without display !
+
         private const int BUFFER_LEN = 4096;
 
         private readonly PipeStream _PipeStream;
@@ -28,12 +31,6 @@ namespace LiveLogLibrary
             _buffer = new byte[BUFFER_LEN];
             _id = 0;
         }
-
-        //public new void Close()
-        //{
-        //    base.Close();
-        //    _PipeStream.Close();
-        //}
 
         protected override void Append(LoggingEvent loggingEvent)
         {

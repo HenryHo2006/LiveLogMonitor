@@ -33,7 +33,6 @@ namespace LiveLogLibrary
             NamedPipeServerStream pipeServer = new NamedPipeServerStream(pipe_name, PipeDirection.InOut,
                 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
 
-
             return pipeServer;
         }
 
@@ -63,6 +62,7 @@ namespace LiveLogLibrary
 
                     // Wait for client connect broken
                     await pipe_appender.WaitConnectBrokenAsync(cancellation_token);
+
                     pipe_appender.Threshold = Level.Off;
                     await Task.Delay(10, cancellation_token);   // clear exist log items
                     pipe_appender.Close();

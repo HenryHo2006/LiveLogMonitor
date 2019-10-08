@@ -23,7 +23,7 @@ namespace LiveLogMonitor
             }
             else
             {
-                string[] strs = args[0].Split('/', '\\');
+                string[] strs = args[0].Split('/', '\\', ':');
                 if (strs.Length == 2)
                 {
                     host = strs[0];
