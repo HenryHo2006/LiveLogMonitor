@@ -1,27 +1,28 @@
 # LiveLogMonitor
 
-¶¯Ì¬Log¼àÊÓÆ÷£¬»ùÓÚ.net standard 2.0, ¿çÆ½Ì¨    
+åŠ¨æ€Logç›‘è§†å™¨ï¼ŒåŸºäºŽ.net standard 2.0, è·¨å¹³å°    
 
-Log×îÖ÷ÒªµÄÁ½ÀàÓ¦ÓÃ³¡¾°£º    
+Logæœ€ä¸»è¦çš„ä¸¤ç±»åº”ç”¨åœºæ™¯ï¼š    
 
 -  ### Archived Log    
-     Éú²úÖÐ£¬Ó¦ÓÃ³ÌÐò³öÏÖÁËÒì³£ÇéÐÎ±ÀÀ£ÁË£¬È»ºó¿Í»§ÖØÆôÓ¦ÓÃ³ÌÐò¼ÌÐøÉú²ú£¬ÐèÒªÊÛ·þÈËÔ±»òÑÐ·¢ÈËÔ±ÅÅ²éÇé¿ö    
-     ½â¾ö·½°¸£ºÈí¼þÊä³öÈÕÖ¾µ½Windows Event Log System£¬Ä¬ÈÏ¿ª·Å¼¶±ðÊÇError, Fault    
-     Èç¹ûÔÚ.Net¼¼ÊõÕ»ÖÐ£¬ÓÃLog4NetµÄEventLogAppender¼´¿É£¬ÓÃlog4net.configÀ´ÅäÖÃ    
-     ±¸×¢£ºÕâÖÖ½â¾ö·½°¸»ù±¾ÉÏ¿ÉÒÔ¶¨Î»µ½ÎÊÌâ·¢ÉúµÄÄ£¿é¼°Å×³öÒì³£µÄ´úÂëÐÐ£¬µ«²»Ò»¶¨ÄÜÍêÈ«½â¾öÎÊÌâ    
+     ç”Ÿäº§ä¸­ï¼Œåº”ç”¨ç¨‹åºå‡ºçŽ°äº†å¼‚å¸¸æƒ…å½¢å´©æºƒäº†ï¼Œç„¶åŽå®¢æˆ·é‡å¯åº”ç”¨ç¨‹åºç»§ç»­ç”Ÿäº§ï¼Œéœ€è¦å”®æœäººå‘˜æˆ–ç ”å‘äººå‘˜æŽ’æŸ¥æƒ…å†µ    
+     è§£å†³æ–¹æ¡ˆï¼šè½¯ä»¶è¾“å‡ºæ—¥å¿—åˆ°Windows Event Log Systemï¼Œé»˜è®¤å¼€æ”¾çº§åˆ«æ˜¯Error, Fault    
+     å¦‚æžœåœ¨.NetæŠ€æœ¯æ ˆä¸­ï¼Œç”¨Log4Netçš„EventLogAppenderå³å¯ï¼Œç”¨log4net.configæ¥é…ç½®    
+     å¤‡æ³¨ï¼šè¿™ç§è§£å†³æ–¹æ¡ˆåŸºæœ¬ä¸Šå¯ä»¥å®šä½åˆ°é—®é¢˜å‘ç”Ÿçš„æ¨¡å—åŠæŠ›å‡ºå¼‚å¸¸çš„ä»£ç è¡Œï¼Œä½†ä¸ä¸€å®šèƒ½å®Œå…¨è§£å†³é—®é¢˜    
 
 -  ### Living Log    
-     ÑÐ·¢ÈËÔ±ÔÚÏß¸ú½øÊÔÓÃÆÚÈí¼þÊ±£¬¶ÔÄ³Ð©´íÎó¡¢Á÷³Ì¡¢ÐÔÄÜ£¬ÐèÒª¼°Ê±¼à¿Ø£¬ÊÕ¼¯ÐÅÏ¢    
-     ½â¾ö·½°¸£ºÓ¦ÓÃ³ÌÐòÔËÐÐÊ±£¬´´½¨Ò»¸öÃüÃû¹ÜµÀÓÃÓÚlog monitoring    
-     ÓÃLiveLogWatchingÓ¦ÓÃ³ÌÐò£¬²»´ø²ÎÊýÔòÃ¶¾Ù±¾µØµÄÃüÃû¹ÜµÀ£¬ÕÒµ½Ê×¸öLog¿ªÍ·µÄÁ¬½Ó    
-     ´ø²ÎÊýÔòÓÃ²ÎÊýÀ´Á¬½Ó    
+     ç ”å‘äººå‘˜åœ¨çº¿è·Ÿè¿›è¯•ç”¨æœŸè½¯ä»¶æ—¶ï¼Œå¯¹æŸäº›é”™è¯¯ã€æµç¨‹ã€æ€§èƒ½ï¼Œéœ€è¦åŠæ—¶ç›‘æŽ§ï¼Œæ”¶é›†ä¿¡æ¯    
+     è§£å†³æ–¹æ¡ˆï¼šåº”ç”¨ç¨‹åºè¿è¡Œæ—¶ï¼Œåˆ›å»ºä¸€ä¸ªå‘½åç®¡é“ç”¨äºŽlog monitoring    
+     ç”¨LiveLogWatchingåº”ç”¨ç¨‹åºï¼Œä¸å¸¦å‚æ•°åˆ™æžšä¸¾æœ¬åœ°çš„å‘½åç®¡é“ï¼Œæ‰¾åˆ°é¦–ä¸ªLogå¼€å¤´çš„è¿žæŽ¥    
+     å¸¦å‚æ•°åˆ™ç”¨å‚æ•°æ¥è¿žæŽ¥    
 
-### ÓÃ·¨£º
+### ç”¨æ³•ï¼š
 
-ÔÚ³ÌÐòÖÐÔö¼ÓÁ½¾ä´úÂë´´½¨Ò»¸öÃüÃû¹ÜµÀ£¬LiveLogMonitor³ÌÐò»á×Ô¶¯À´Á¬½Ó²¢ÏÔÊ¾Log
+åœ¨ç¨‹åºä¸­å¢žåŠ ä¸¤å¥ä»£ç åˆ›å»ºä¸€ä¸ªå‘½åç®¡é“ï¼ŒLiveLogMonitorç¨‹åºä¼šè‡ªåŠ¨æ¥è¿žæŽ¥å¹¶æ˜¾ç¤ºLog
 ```
  var pipe = Utils.CreatePipe();
  var task = Utils.WaitConnectAndBrokenAsync(pipe, exit.Token);
 ```
+![LiveLogMonitor](demo.png "Demo")    
 
-Çë²Î¿¼¸½´øµÄÁ½¸öÀý×Ó
+è¯·å‚è€ƒé™„å¸¦çš„ä¸¤ä¸ªä¾‹å­
