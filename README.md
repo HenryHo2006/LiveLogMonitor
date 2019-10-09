@@ -11,8 +11,8 @@ There are two main types of application scenarios for log:
    Living log are required when R&D personnel need to solve a specific problem online    
    Log4net.config is cumbersome to configure and is not conducive to solving problems quickly    
 
-### Usage£º
-   Add two lines of code to the program to create a named pipe£¬
+### Usage
+   Add two lines of code to the program to create a named pipe
 LiveLogMonitor program will be connect and display Log    
 ```
  var pipe = Utils.CreatePipe();
