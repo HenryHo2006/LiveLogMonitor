@@ -6,10 +6,10 @@ using System.Text;
 namespace LiveLogLibrary
 {
     // Log Level
-    public enum LogLevel { Debug, Info, Warning, Error, Fatal }
+   internal enum LogLevel { Debug, Info, Warning, Error, Fatal }
 
     // Log Item
-    public struct LogItem
+    internal struct LogItem
     {
         public int ID { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
@@ -23,7 +23,7 @@ namespace LiveLogLibrary
         //{
         //    // encode: total_len(2byte), application len(1byte), logger name(1byte), field sequence...
         //    BitConverter.TryWriteBytes(buffer.Slice(4), ID);
-        //    BitConverter.TryWriteBytes(buffer.Slice(8), TimeStamp.ToFileTime());
+        //    BitConverter.TryWriteBytes(buffer.Slice(8), TimeStamp.ToUnixTimeMilliseconds());
         //    buffer[16] = (byte)Level;
         //    int app_len = Encoding.Unicode.GetBytes(Application, buffer.Slice(17));
         //    int log_name_len = Encoding.Unicode.GetBytes(LoggerName, buffer.Slice(17 + app_len));
@@ -49,8 +49,8 @@ namespace LiveLogLibrary
                     // encode: total_len(2byte), application len(1byte), logger name(1byte), field sequence...
                     //BitConverter.TryWriteBytes(buffer.Slice(4), ID);
                     *(int*)(pBuf + 4) = ID;
-                    //BitConverter.TryWriteBytes(buffer.Slice(8), TimeStamp.ToFileTime());
-                    *(long*)(pBuf + 8) = TimeStamp.ToFileTime();
+                    //BitConverter.TryWriteBytes(buffer.Slice(8), TimeStamp.ToUnixTimeMilliseconds());
+                    *(long*)(pBuf + 8) = TimeStamp.ToUnixTimeMilliseconds();
                     buffer[16] = (byte)Level;
                     int app_len = Encoding.Unicode.GetBytes(pApp, Application.Length, pBuf + 17, buffer.Length);
                     int log_name_len = Encoding.Unicode.GetBytes(pLogName, LoggerName.Length, pBuf + 17 + app_len, buffer.Length);

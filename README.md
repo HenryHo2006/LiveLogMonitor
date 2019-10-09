@@ -19,5 +19,7 @@ LiveLogMonitor program will be connect and display Log
  var task = Utils.WaitConnectAndBrokenAsync(pipe, exit.Token);
 ```
 
+![image][demo.png]    
+
 reference the sample projects for detail
 

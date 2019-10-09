@@ -5,10 +5,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Company>ZisionTech inc.,</Company>
+    <Version>1.1.0</Version>
+    <Authors>Henry Ho</Authors>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LiveLogLibrary\LiveLogLibrary.csproj" />
-  </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Pipes;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace LiveLogLibrary
     /// <summary>
     /// Pipe Addpender for log item transfer
     /// </summary>
-    public class PipeAppender : AppenderSkeleton // BufferingAppenderSkeleton
+    internal class PipeAppender : AppenderSkeleton, IDisposable // BufferingAppenderSkeleton
     {
         // BufferingAppenderSkeleton cache some log without display !
 
@@ -22,17 +23,24 @@ namespace LiveLogLibrary
         private readonly ManualResetEventAsync _ConnectBrokenEvent;
         private readonly byte[] _buffer;
         private int _id;
+        private readonly ProdConsTasks<LoggingEvent> _ProdConsTasks;
 
         public PipeAppender(PipeStream pipe_stream)
         {
             _PipeStream = pipe_stream;
             //_ConnectBrokenEvent = new ManualResetEvent(false);
             _ConnectBrokenEvent = new ManualResetEventAsync(false);
+            _ProdConsTasks = new ProdConsTasks<LoggingEvent>("cached prcoess log thread")
+            {
+                Process = ProcessLog
+            };
+            _ProdConsTasks.Start();
+
             _buffer = new byte[BUFFER_LEN];
             _id = 0;
         }
 
-        protected override void Append(LoggingEvent loggingEvent)
+        private void ProcessLog(LoggingEvent loggingEvent, int task_id, CancellationToken cancellation_token)
         {
             try
             {
@@ -51,7 +59,13 @@ namespace LiveLogLibrary
             catch (IOException) // pipeline connection broken
             {
                 _ConnectBrokenEvent.Set();
+                _ProdConsTasks.Abort();
             }
+        }
+
+        protected override void Append(LoggingEvent loggingEvent)
+        {
+            _ProdConsTasks.AddMaterial(loggingEvent);
         }
 
         public async Task WaitConnectBrokenAsync(CancellationToken cancellation_token)
@@ -72,5 +86,40 @@ namespace LiveLogLibrary
                 return LogLevel.Fatal;
             return LogLevel.Info;
         }
+
+        #region Dispose Pattern
+
+        private bool _disposed;
+
+        /// <summary>
+        /// Implement IDisposable. 
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                    _ProdConsTasks.Dispose();
+                    // _PipeStream is just a reference, its lift cycle is not managed by PipeAppender
+                    // _PipeStream.Dispose();
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                _disposed = true;
+            }
+        }
+
+        #endregion
+
     }
 }

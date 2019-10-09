@@ -7,12 +7,24 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-using LiveLogLibrary;
-
 namespace LiveLogMonitor
 {
     internal static class Program
     {
+        // Log Level
+        private enum LogLevel { Debug, Info, Warning, Error, Fatal }
+
+        // Log Item (duplicate define to remove dependency)
+        private struct LogItem
+        {
+            public int ID { get; set; }
+            public DateTimeOffset TimeStamp { get; set; }
+            public LogLevel Level { get; set; }
+            public string Application { get; set; }
+            public string LoggerName { get; set; }
+            public string Message { get; set; }
+        }
+
         private static async Task Main(string[] args)
         {
             string host = null, named_pipe = null;
@@ -45,7 +57,8 @@ namespace LiveLogMonitor
                 NativeMethods.ShowWindow(Process.GetCurrentProcess().MainWindowHandle, ShowWindowMode.SW_MAXIMIZE);
 
             var pipeClient = new NamedPipeClientStream(host, named_pipe, PipeDirection.InOut);
-            Console.Write($@"Connecting to host:{host} pipe:{named_pipe}...");
+            Console.WriteLine("If you disconnect and then connect again, you need to wait for the first log");
+            Console.Write($@"Connecting to host:{host} pipe:{named_pipe} ...");
             await pipeClient.ConnectAsync();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Success");
@@ -69,6 +82,8 @@ namespace LiveLogMonitor
                 }
                 catch (Exception ex)
                 {
+                    pipeClient.Close();
+
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(ex.Message);
                     Console.ResetColor();
@@ -112,7 +127,7 @@ namespace LiveLogMonitor
             return new LogItem
             {
                 ID = BitConverter.ToInt32(buffer.Slice(4, 4)),
-                TimeStamp = DateTimeOffset.FromFileTime(BitConverter.ToInt64(buffer.Slice(8, 8))),
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(BitConverter.ToInt64(buffer.Slice(8, 8))),
                 Level = (LogLevel)buffer[16],
                 Application = Encoding.Unicode.GetString(buffer.Slice(17, app_len)),
                 LoggerName = Encoding.Unicode.GetString(buffer.Slice(17 + app_len, log_name_len)),

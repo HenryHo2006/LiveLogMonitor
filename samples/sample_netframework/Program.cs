@@ -52,8 +52,6 @@ namespace sample_netframework
         /// <returns></returns>
         public static NamedPipeServerStream CreatePipeWithSecurity(string pipe_name = null)
         {
-            const int PIPE_SIZE = 4096;
-
             var repository = (log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository(
                 Assembly.GetExecutingAssembly());
             if (!repository.Configured)
@@ -67,7 +65,10 @@ namespace sample_netframework
                 PipeAccessRights.ReadWrite, AccessControlType.Allow));
 
             NamedPipeServerStream pipeServer = new NamedPipeServerStream(pipe_name, PipeDirection.InOut,
-                1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, PIPE_SIZE, PIPE_SIZE, pipeSa);
+                1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
+                0, // default in buffer size
+                0, // default out buffer size
+                pipeSa);
 
             return pipeServer;
         }

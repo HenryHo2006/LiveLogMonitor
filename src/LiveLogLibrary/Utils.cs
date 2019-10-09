@@ -64,9 +64,10 @@ namespace LiveLogLibrary
                     await pipe_appender.WaitConnectBrokenAsync(cancellation_token);
 
                     pipe_appender.Threshold = Level.Off;
-                    await Task.Delay(10, cancellation_token);   // clear exist log items
+                    await Task.Delay(10, cancellation_token); // clear exist log items
                     pipe_appender.Close();
                     repository.Root.RemoveAppender(pipe_appender);
+                    pipe_appender.Dispose();
 
                     pipe_server.Disconnect();
                 }
