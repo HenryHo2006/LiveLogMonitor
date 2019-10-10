@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LiveLogLibrary
+namespace LiveLogMonitor
 {
     /// <summary>
     /// 生产消费模式任务管理器

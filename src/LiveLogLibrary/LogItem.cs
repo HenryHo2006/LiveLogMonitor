@@ -3,7 +3,7 @@ using System.IO.Pipes;
 
 using System.Text;
 
-namespace LiveLogLibrary
+namespace LiveLogMonitor
 {
     // Log Level
    internal enum LogLevel { Debug, Info, Warning, Error, Fatal }

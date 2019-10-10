@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using log4net;
 
-using LiveLogLibrary;
+using LiveLogMonitor;
 
 namespace sample_netframework
 {

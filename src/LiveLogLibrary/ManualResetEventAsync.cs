@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LiveLogLibrary
+namespace LiveLogMonitor
 {
     /// <summary>
     /// An async manual reset event.

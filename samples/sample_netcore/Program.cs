@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
 
-using LiveLogLibrary;
+using LiveLogMonitor;
 
 namespace sample_netcore
 {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using log4net.Appender;
 using log4net.Core;
 
-namespace LiveLogLibrary
+namespace LiveLogMonitor
 {
     /// <summary>
     /// Pipe Addpender for log item transfer
