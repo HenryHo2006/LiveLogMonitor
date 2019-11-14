@@ -9,6 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/HenryHo2006/LiveLogMonitor/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/HenryHo2006/LiveLogMonitor</projectUrl>
+    <repository type="git" url="https://github.com/HenryHo2006/LiveLogMonitor.git" branch="master" commit="f890449582daf52c4ebaac1455031e07268bd8bd" />
     <description>Live Log Monitor, .net core Console app, connect log source via named pipe, work with log4net</description>
     <language>en-US</language>
     <tags>Log, Monitor, living</tags>

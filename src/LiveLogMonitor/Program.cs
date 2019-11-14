@@ -72,6 +72,8 @@ namespace LiveLogMonitor
                     if (!pipeClient.IsConnected) throw new Exception("pipe is broken");
 
                     var log = ReadFromStream(pipeClient, buffer);
+                    if(log.ID == 0 && log.TimeStamp == DateTimeOffset.MinValue)
+                        continue;
                     if (log.Level == LogLevel.Warning)
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     else if (log.Level == LogLevel.Error || log.Level == LogLevel.Fatal)
@@ -118,7 +120,10 @@ namespace LiveLogMonitor
 
         private static LogItem ReadFromStream(PipeStream stream, Span<byte> buffer)
         {
-            stream.Read(buffer);
+            int bytes = stream.Read(buffer);
+            if (bytes == 0)     // monitor app exit
+                return new LogItem();
+
             int total_len = buffer[0] * 256 + buffer[1];
             int app_len = buffer[2];
             int log_name_len = buffer[3];

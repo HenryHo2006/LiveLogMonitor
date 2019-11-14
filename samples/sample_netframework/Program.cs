@@ -14,14 +14,14 @@ using LiveLogMonitor;
 
 namespace sample_netframework
 {
-    static class Program
+    internal static class Program
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(Program));
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static async Task Main()
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -30,19 +30,19 @@ namespace sample_netframework
 
             var pipe = CreatePipeWithSecurity(); //Utils.CreatePipe();
             var exit = new CancellationTokenSource();
-            var task = Utils.WaitConnectAndBrokenAsync(pipe, exit.Token);
+            Task.Run(() => Utils.WaitConnectAndBrokenAsync(pipe, exit.Token), exit.Token);
 
             Application.Run(new Form1());
-
-            try
-            {
-                exit.Cancel();
-                await task;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            exit.Cancel();
+            //try
+            //{
+            //    exit.Cancel();
+            //    await task;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         /// <summary>
