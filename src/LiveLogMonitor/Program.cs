@@ -51,6 +51,7 @@ namespace LiveLogMonitor
                 Environment.Exit(0);
             }
 
+            Console.OutputEncoding = Encoding.Unicode;
             Console.Title = $@"Living Log Monitor 【host:{host} pipe:{named_pipe}】";
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
