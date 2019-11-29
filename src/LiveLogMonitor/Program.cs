@@ -122,7 +122,7 @@ namespace LiveLogMonitor
         private static LogItem ReadFromStream(PipeStream stream, Span<byte> buffer)
         {
             int bytes = stream.Read(buffer);
-            if (bytes == 0)     // monitor app exit
+            if (bytes == 0)     // monitor app exit / crash
                 return new LogItem();
 
             int total_len = buffer[0] * 256 + buffer[1];
