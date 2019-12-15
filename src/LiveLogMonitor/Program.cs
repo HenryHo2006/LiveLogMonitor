@@ -33,8 +33,8 @@ namespace LiveLogMonitor
             public bool Max { get; set; }
             [Option('t', "top", Required = false, Default = true, HelpText = "Always on top.")]
             public bool Top { get; set; }
-            [Value(0, MetaName = "pipename", HelpText = "Pipe name [host\\port]")]
-            public long? PipeName { get; set; }
+            [Value(0, MetaName = "pipename", Required = false, HelpText = "Pipe name [host\\port]")]
+            public string PipeName { get; set; }
         }
 
         private static async Task Main(string[] args)
@@ -43,9 +43,9 @@ namespace LiveLogMonitor
 
             Parser.Default.ParseArguments<Options>(args).WithParsed(o =>
             {
-                if (o.PipeName.HasValue)
+                if (!string.IsNullOrEmpty(o.PipeName))
                 {
-                    string[] strs = args[0].Split('/', '\\', ':');
+                    string[] strs = o.PipeName.Split('/', '\\', ':');
                     if (strs.Length == 2)
                     {
                         host = strs[0];
