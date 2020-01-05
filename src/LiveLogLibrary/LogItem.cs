@@ -6,9 +6,10 @@ using System.Text;
 namespace LiveLogMonitor
 {
     // Log Level
-   internal enum LogLevel { Debug, Info, Warning, Error, Fatal }
+    internal enum LogLevel { Debug, Info, Warning, Error, Fatal }
 
     // Log Item
+    // No expcetion filed，we recommend use Log.Error(exception_object) to convert exception object to stack trace info.
     internal struct LogItem
     {
         public int ID { get; set; }
