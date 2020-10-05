@@ -110,7 +110,7 @@ namespace LiveLogMonitor
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     else if (log.Level == LogLevel.Error || log.Level == LogLevel.Fatal)
                         Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{log.ID,-6:0} [{log.TimeStamp:yy-MM-dd hh:mm:ss.fff}] {log.Level,7} {log.Message}");
+                    Console.WriteLine($"{log.ID,-6:0} [{log.TimeStamp.ToLocalTime():yy-MM-dd hh:mm:ss.fff}] {log.Level,7} {log.Message}");
                     if (log.Level >= LogLevel.Warning)
                         Console.ResetColor();
                 }

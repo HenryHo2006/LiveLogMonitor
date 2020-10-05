@@ -58,7 +58,7 @@ namespace sample_netframework
             Process process = new Process();
             // Configure the process using the StartInfo properties.
             var str = Environment.CurrentDirectory;
-            process.StartInfo.FileName = @"..\..\..\..\src\LiveLogMonitor\bin\Release\netcoreapp3.0\LiveLogMonitor.exe";
+            process.StartInfo.FileName = @"..\..\..\..\src\LiveLogMonitor\bin\Release\netcoreapp3.1\LiveLogMonitor.exe";
             //process.StartInfo.Arguments = "-n";
             //process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
             process.Start();

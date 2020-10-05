@@ -34,8 +34,6 @@ namespace sample_netcore
             TimeSpan ts_last = TimeSpan.Zero;
             while (true)
             {
-                Log.Debug("jls:DC100372A TOP 外　层 lot:200111A sn:1已成功保存到数据库");
-                continue;
                 //var msg = Console.ReadLine();
                 //if (msg == "break") break;
                 var i = rand.Next();
