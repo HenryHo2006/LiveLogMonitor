@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>LiveLogMonitor</id>
+    <version>1.3.9</version>
+    <title>Live Log Monitor</title>
+    <authors>Henry Ho</authors>
+    <owners>Henry Ho</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/HenryHo2006/LiveLogMonitor/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/HenryHo2006/LiveLogMonitor</projectUrl>
+    <description>Live Log Monitor, .net core Console app, connect log source via named pipe, work with log4net</description>
+    <language>en-US</language>
+    <tags>Log, Monitor, living</tags>
+    <repository type="git" url="https://github.com/HenryHo2006/LiveLogMonitor.git" branch="master" commit="9a43dfee28f59aa00a68f00413449c6fe11d9d0b" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="log4net" version="2.0.12" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="build\CommandLine.dll" target="build\CommandLine.dll" />
+    <file src="build\LiveLogMonitor.dll" target="build\LiveLogMonitor.dll" />
+    <file src="build\LiveLogMonitor.exe" target="build\LiveLogMonitor.exe" />
+    <file src="build\LiveLogMonitor.runtimeconfig.json" target="build\LiveLogMonitor.runtimeconfig.json" />
+    <file src="build\LiveLogMonitor.targets" target="build\LiveLogMonitor.targets" />
+    <file src="lib\netstandard2.0\LiveLogLibrary.dll" target="lib\netstandard2.0\LiveLogLibrary.dll" />
+  </files>
+</package>
