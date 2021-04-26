@@ -110,7 +110,7 @@ namespace LiveLogMonitor
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     else if (log.Level == LogLevel.Error || log.Level == LogLevel.Fatal)
                         Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{log.ID,-6:0} [{log.TimeStamp.ToLocalTime():yy-MM-dd hh:mm:ss.fff}] {log.Level,7} {log.Message}");
+                    Console.WriteLine($"{log.ID,-6:0} [{log.TimeStamp.ToLocalTime():yy-MM-dd HH:mm:ss.fff}] {log.Level,7} {log.Message}");
                     if (log.Level >= LogLevel.Warning)
                         Console.ResetColor();
                 }
@@ -164,7 +164,7 @@ namespace LiveLogMonitor
             return new LogItem
             {
                 ID = BitConverter.ToInt32(buffer.Slice(4, 4)),
-                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(BitConverter.ToInt64(buffer.Slice(8, 8))).ToLocalTime(),
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(BitConverter.ToInt64(buffer.Slice(8, 8))),
                 Level = (LogLevel)buffer[16],
                 Application = Encoding.Unicode.GetString(buffer.Slice(17, app_len)),
                 LoggerName = Encoding.Unicode.GetString(buffer.Slice(17 + app_len, log_name_len)),
