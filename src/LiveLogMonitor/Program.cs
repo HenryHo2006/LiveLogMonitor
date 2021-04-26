@@ -164,7 +164,7 @@ namespace LiveLogMonitor
             return new LogItem
             {
                 ID = BitConverter.ToInt32(buffer.Slice(4, 4)),
-                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(BitConverter.ToInt64(buffer.Slice(8, 8))),
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(BitConverter.ToInt64(buffer.Slice(8, 8))).ToLocalTime(),
                 Level = (LogLevel)buffer[16],
                 Application = Encoding.Unicode.GetString(buffer.Slice(17, app_len)),
                 LoggerName = Encoding.Unicode.GetString(buffer.Slice(17 + app_len, log_name_len)),
