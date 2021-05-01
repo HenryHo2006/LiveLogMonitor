@@ -33,13 +33,15 @@ namespace LiveLogMonitor
             public bool Max { get; set; }
             [Option('t', "top", Required = false, Default = true, HelpText = "Always on top.")]
             public bool Top { get; set; }
+            [Option('i', "id", Required = false, Default = "", HelpText = "Set identify name.")]
+            public string ID { get; set; }
             [Value(0, MetaName = "pipename", Required = false, HelpText = "Pipe name [host\\port]")]
             public string PipeName { get; set; }
         }
 
         private static async Task Main(string[] args)
         {
-            string host = ".", named_pipe = null;
+            string host = ".", named_pipe = null, id = string.Empty;
 
             Parser.Default.ParseArguments<Options>(args).WithParsed(o =>
             {
@@ -67,6 +69,8 @@ namespace LiveLogMonitor
                     if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                         NativeMethods.ShowWindow(Process.GetCurrentProcess().MainWindowHandle, ShowWindowMode.SW_MAXIMIZE);
                 }
+
+                id = o.ID;
             }).WithNotParsed(errs =>
             {
                 //Console.WriteLine(errs);
@@ -74,7 +78,7 @@ namespace LiveLogMonitor
                 Environment.Exit(-1);
             });
 
-            if(string.IsNullOrEmpty(named_pipe))
+            if (string.IsNullOrEmpty(named_pipe))
                 named_pipe = EnumerateLocalNamedPipes();
 
             if (string.IsNullOrEmpty(host) || string.IsNullOrEmpty(named_pipe))
@@ -86,7 +90,7 @@ namespace LiveLogMonitor
             }
 
             Console.OutputEncoding = Encoding.Unicode;
-            Console.Title = $@"Living Log Monitor 【host:{host} pipe:{named_pipe}】";
+            Console.Title = $@"Living Log Monitor 【host:{host} id:{id} pipe:{named_pipe}】";
 
             var pipeClient = new NamedPipeClientStream(host, named_pipe, PipeDirection.InOut);
             Console.WriteLine("If you disconnect and then connect again, you need to wait for the first log");
