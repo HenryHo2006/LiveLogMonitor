@@ -61,6 +61,27 @@ namespace LiveLogMonitor
                 _ConnectBrokenEvent.Set();
                 _ProdConsTasks.Abort();
             }
+            catch(Exception ex)
+            {
+                // log系统自身异常，需要被诊断解决的
+                try
+                {
+                    var log_item = new LogItem
+                    {
+                        ID = _id++,
+                        TimeStamp = loggingEvent.TimeStamp,
+                        Level = LogLevel.Error,
+                        Application = "LiveLogLibrary.dll",
+                        LoggerName = "PipeAppender",
+                        Message = $"管道日志系统产生异常：{ex.Message}"
+                    };
+                    log_item.PutToStream(_PipeStream, _buffer);
+                }
+                catch
+                {
+                    // 还是出现问题再忽略
+                }
+            }
         }
 
         protected override void Append(LoggingEvent loggingEvent)

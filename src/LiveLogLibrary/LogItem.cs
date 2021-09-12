@@ -55,7 +55,9 @@ namespace LiveLogMonitor
                     buffer[16] = (byte)Level;
                     int app_len = Encoding.Unicode.GetBytes(pApp, Application.Length, pBuf + 17, buffer.Length - 17);
                     int log_name_len = Encoding.Unicode.GetBytes(pLogName, LoggerName.Length, pBuf + 17 + app_len, buffer.Length - 17 - app_len);
-                    int msg_len = Encoding.Unicode.GetBytes(pMsg, Message.Length, pBuf + 17 + app_len + log_name_len, buffer.Length - 17 - app_len - log_name_len);
+                    // trucate message if too long
+                    int msg_len = Encoding.Unicode.GetBytes(pMsg, Math.Min(Message.Length, buffer.Length / 4),
+                        pBuf + 17 + app_len + log_name_len, buffer.Length - 17 - app_len - log_name_len);
 
                     int total_len = 17 + app_len + log_name_len + msg_len;
                     if (total_len > ushort.MaxValue)
