@@ -5,12 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Company>ZisionTech inc.,</Company>
-    <Version>1.4.6</Version>
+    <Version>1.4.7</Version>
     <Authors>Henry Ho</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
   </ItemGroup>
 
 </Project>
