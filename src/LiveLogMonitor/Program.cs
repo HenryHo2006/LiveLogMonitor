@@ -123,7 +123,7 @@ namespace LiveLogMonitor
                     pipeClient.Close();
 
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine($"{DateTimeOffset.Now} {ex.Message}");
                     Console.ResetColor();
                     Console.WriteLine("Press any key to exit.");
                     Console.ReadKey();
