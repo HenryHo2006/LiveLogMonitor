@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.4.7</Version>
+    <Version>1.5.3</Version>
     <Authors>Henry Ho</Authors>
     <Company>ZisionTech inc.,</Company>
     <RootNamespace>LiveLogMonitor</RootNamespace>
@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.17" />
+    <PackageReference Include="log4net" Version="3.0.3" />
   </ItemGroup>
 
 </Project>

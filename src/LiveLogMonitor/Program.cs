@@ -94,7 +94,7 @@ namespace LiveLogMonitor
 
             var pipeClient = new NamedPipeClientStream(host, named_pipe, PipeDirection.InOut);
             Console.WriteLine("If you disconnect and then connect again, you need to wait for the first log");
-            Console.Write($@"Connecting to host:{host} pipe:{named_pipe} ...");
+            Console.Write($@"Connecting to host:{host} pipe:{named_pipe} id:{id}...");
             await pipeClient.ConnectAsync();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Success");
