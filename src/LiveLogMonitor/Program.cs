@@ -95,15 +95,15 @@ namespace LiveLogMonitor
             var pipeClient = new NamedPipeClientStream(host, named_pipe, PipeDirection.InOut);
             Console.WriteLine("If you disconnect and then connect again, you need to wait for the first log");
             Console.Write($@"Connecting to host:{host} pipe:{named_pipe} id:{id}...");
-            await pipeClient.ConnectAsync();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Success");
-            Console.ResetColor();
-
-            byte[] buffer = new byte[4096];
-            while (true)
+            try
             {
-                try
+                await pipeClient.ConnectAsync();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Success");
+                Console.ResetColor();
+
+                byte[] buffer = new byte[4096];
+                while (true)
                 {
                     if (!pipeClient.IsConnected) throw new Exception("pipe is broken");
 
@@ -118,18 +118,17 @@ namespace LiveLogMonitor
                     if (log.Level >= LogLevel.Warning)
                         Console.ResetColor();
                 }
-                catch (Exception ex)
-                {
-                    pipeClient.Close();
+            }
+            catch (Exception ex)
+            {
+                pipeClient.Close();
 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{DateTimeOffset.Now} {ex.Message}");
-                    Console.ResetColor();
-                    Console.WriteLine("Press any key to exit.");
-                    Console.ReadKey();
-                    Environment.Exit(-1);
-                    return;
-                }
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{DateTimeOffset.Now} {ex.Message}");
+                Console.ResetColor();
+                Console.WriteLine("Press any key to exit.");
+                Console.ReadKey();
+                Environment.Exit(-1);
             }
         }
 
